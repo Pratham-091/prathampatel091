@@ -1,11 +1,14 @@
-import HeroSection from "@/components/portfolio/HeroSection";
-import AboutSection from "@/components/portfolio/AboutSection";
-import ExperienceSection from "@/components/portfolio/ExperienceSection";
-import EducationSection from "@/components/portfolio/EducationSection";
-import CertificationsSection from "@/components/portfolio/CertificationsSection";
-import ProjectsSection from "@/components/portfolio/ProjectsSection";
-import LinkedInButton from "@/components/portfolio/LinkedInButton";
-import Footer from "@/components/portfolio/Footer";
+ import Navigation from "@/components/portfolio/Navigation";
+ import HeroSection from "@/components/portfolio/HeroSection";
+ import AboutSection from "@/components/portfolio/AboutSection";
+ import ExperienceSection from "@/components/portfolio/ExperienceSection";
+ import EducationSection from "@/components/portfolio/EducationSection";
+ import CertificationsSection from "@/components/portfolio/CertificationsSection";
+ import ProjectsSection from "@/components/portfolio/ProjectsSection";
+ import ContactSection from "@/components/portfolio/ContactSection";
+ import LinkedInButton from "@/components/portfolio/LinkedInButton";
+ import Footer from "@/components/portfolio/Footer";
+ import AnimatedSection from "@/components/portfolio/AnimatedSection";
 
 const portfolioData = {
   hero: {
@@ -97,11 +100,14 @@ const portfolioData = {
     },
   ],
   linkedin: "https://www.linkedin.com/in/pratham-patel-283766347/",
+ email: "prathampatel0124@gmail.com",
 };
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-dark">
+       <Navigation />
+       
       <HeroSection 
         name={portfolioData.hero.name}
         tagline={portfolioData.hero.tagline}
@@ -109,18 +115,35 @@ const Index = () => {
         profilePhoto={portfolioData.hero.profilePhoto}
       />
       
-      <AboutSection 
-        about={portfolioData.about}
-        skills={portfolioData.topSkills}
-      />
+       <AnimatedSection>
+         <AboutSection 
+           about={portfolioData.about}
+           skills={portfolioData.topSkills}
+         />
+       </AnimatedSection>
       
-      <ExperienceSection experience={portfolioData.experience} />
+       <AnimatedSection>
+         <ExperienceSection experience={portfolioData.experience} />
+       </AnimatedSection>
       
-      <EducationSection education={portfolioData.education} />
+       <AnimatedSection>
+         <EducationSection education={portfolioData.education} />
+       </AnimatedSection>
       
-      <CertificationsSection certifications={portfolioData.certifications} />
+       <AnimatedSection>
+         <CertificationsSection certifications={portfolioData.certifications} />
+       </AnimatedSection>
       
-      <ProjectsSection projects={portfolioData.projects} />
+       <AnimatedSection>
+         <ProjectsSection projects={portfolioData.projects} />
+       </AnimatedSection>
+       
+       <AnimatedSection>
+         <ContactSection 
+           email={portfolioData.email}
+           linkedin={portfolioData.linkedin}
+         />
+       </AnimatedSection>
       
       <Footer />
       
