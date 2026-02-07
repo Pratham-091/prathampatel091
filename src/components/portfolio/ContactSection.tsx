@@ -1,10 +1,11 @@
- import { useState } from "react";
- import { Mail, Linkedin, Send } from "lucide-react";
- import { Button } from "@/components/ui/button";
- import { Input } from "@/components/ui/input";
- import { Textarea } from "@/components/ui/textarea";
- import { Label } from "@/components/ui/label";
- import { toast } from "@/hooks/use-toast";
+import { useState } from "react";
+import { Mail, Linkedin, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
  
  interface ContactSectionProps {
    email: string;
@@ -26,20 +27,37 @@
      }));
    };
  
-   const handleSubmit = (e: React.FormEvent) => {
-     e.preventDefault();
-     setIsSubmitting(true);
-     
-     // Simulate form submission
-     setTimeout(() => {
-       toast({
-         title: "Message sent!",
-         description: "Thank you for reaching out. I'll get back to you soon.",
-       });
-       setFormData({ name: "", email: "", message: "" });
-       setIsSubmitting(false);
-     }, 1000);
-   };
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsSubmitting(true);
+      
+      try {
+        const { data, error } = await supabase.functions.invoke("send-contact-email", {
+          body: {
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            message: formData.message.trim(),
+          },
+        });
+
+        if (error) throw error;
+
+        toast({
+          title: "Message sent!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } catch (err) {
+        console.error("Contact form error:", err);
+        toast({
+          title: "Error sending message",
+          description: "Please try again or email me directly.",
+          variant: "destructive",
+        });
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
  
    return (
      <section id="contact" className="py-24 relative">
