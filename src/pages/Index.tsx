@@ -116,34 +116,34 @@ const Index = () => {
       />
       
        <AnimatedSection>
-         <AboutSection 
-           about={portfolioData.about}
-           skills={portfolioData.topSkills}
-         />
-       </AnimatedSection>
+          <AboutSection 
+            about={portfolioData.about}
+            skills={portfolioData.topSkills}
+          />
+        </AnimatedSection>
       
-       <AnimatedSection>
-         <ExperienceSection experience={portfolioData.experience} />
-       </AnimatedSection>
+       <AnimatedSection delay={0.1}>
+          <ExperienceSection experience={portfolioData.experience} />
+        </AnimatedSection>
       
-       <AnimatedSection>
-         <EducationSection education={portfolioData.education} />
-       </AnimatedSection>
+       <AnimatedSection delay={0.1}>
+          <EducationSection education={portfolioData.education} />
+        </AnimatedSection>
       
-       <AnimatedSection>
-         <CertificationsSection certifications={portfolioData.certifications} />
-       </AnimatedSection>
+       <AnimatedSection delay={0.1}>
+          <CertificationsSection certifications={portfolioData.certifications} />
+        </AnimatedSection>
       
-       <AnimatedSection>
-         <ProjectsSection projects={portfolioData.projects} />
-       </AnimatedSection>
+       <AnimatedSection delay={0.1}>
+          <ProjectsSection projects={portfolioData.projects} />
+        </AnimatedSection>
        
-       <AnimatedSection>
-         <ContactSection 
-           email={portfolioData.email}
-           linkedin={portfolioData.linkedin}
-         />
-       </AnimatedSection>
+       <AnimatedSection delay={0.1}>
+          <ContactSection 
+            email={portfolioData.email}
+            linkedin={portfolioData.linkedin}
+          />
+        </AnimatedSection>
       
       <Footer />
       
