@@ -1,14 +1,23 @@
- import Navigation from "@/components/portfolio/Navigation";
- import HeroSection from "@/components/portfolio/HeroSection";
- import AboutSection from "@/components/portfolio/AboutSection";
- import ExperienceSection from "@/components/portfolio/ExperienceSection";
- import EducationSection from "@/components/portfolio/EducationSection";
- import CertificationsSection from "@/components/portfolio/CertificationsSection";
- import ProjectsSection from "@/components/portfolio/ProjectsSection";
- import ContactSection from "@/components/portfolio/ContactSection";
- import LinkedInButton from "@/components/portfolio/LinkedInButton";
- import Footer from "@/components/portfolio/Footer";
- import AnimatedSection from "@/components/portfolio/AnimatedSection";
+import { lazy, Suspense } from "react";
+import Navigation from "@/components/portfolio/Navigation";
+import HeroSection from "@/components/portfolio/HeroSection";
+import Footer from "@/components/portfolio/Footer";
+import LinkedInButton from "@/components/portfolio/LinkedInButton";
+import AnimatedSection from "@/components/portfolio/AnimatedSection";
+
+// Lazy-load below-the-fold sections
+const AboutSection = lazy(() => import("@/components/portfolio/AboutSection"));
+const ExperienceSection = lazy(() => import("@/components/portfolio/ExperienceSection"));
+const EducationSection = lazy(() => import("@/components/portfolio/EducationSection"));
+const CertificationsSection = lazy(() => import("@/components/portfolio/CertificationsSection"));
+const ProjectsSection = lazy(() => import("@/components/portfolio/ProjectsSection"));
+const ContactSection = lazy(() => import("@/components/portfolio/ContactSection"));
+
+const SectionFallback = () => (
+  <div className="py-24 flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 const portfolioData = {
   hero: {
@@ -100,53 +109,75 @@ const portfolioData = {
     },
   ],
   linkedin: "https://www.linkedin.com/in/pratham-patel-283766347/",
- email: "prathampatel0124@gmail.com",
+  email: "prathampatel0124@gmail.com",
 };
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-dark">
-       <Navigation />
-       
-      <HeroSection 
-        name={portfolioData.hero.name}
-        tagline={portfolioData.hero.tagline}
-        location={portfolioData.hero.location}
-        profilePhoto={portfolioData.hero.profilePhoto}
-      />
-      
-       <AnimatedSection>
-          <AboutSection 
-            about={portfolioData.about}
-            skills={portfolioData.topSkills}
-          />
-        </AnimatedSection>
-      
-       <AnimatedSection delay={0.1}>
-          <ExperienceSection experience={portfolioData.experience} />
-        </AnimatedSection>
-      
-       <AnimatedSection delay={0.1}>
-          <EducationSection education={portfolioData.education} />
-        </AnimatedSection>
-      
-       <AnimatedSection delay={0.1}>
-          <CertificationsSection certifications={portfolioData.certifications} />
-        </AnimatedSection>
-      
-       <AnimatedSection delay={0.1}>
-          <ProjectsSection projects={portfolioData.projects} />
-        </AnimatedSection>
-       
-       <AnimatedSection delay={0.1}>
-          <ContactSection 
-            email={portfolioData.email}
-            linkedin={portfolioData.linkedin}
-          />
-        </AnimatedSection>
-      
+      {/* Skip to content link for accessibility */}
+      <a
+        href="#about"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:outline-none"
+      >
+        Skip to content
+      </a>
+
+      <Navigation />
+
+      <main>
+        <HeroSection
+          name={portfolioData.hero.name}
+          tagline={portfolioData.hero.tagline}
+          location={portfolioData.hero.location}
+          profilePhoto={portfolioData.hero.profilePhoto}
+        />
+
+        <Suspense fallback={<SectionFallback />}>
+          <AnimatedSection>
+            <AboutSection
+              about={portfolioData.about}
+              skills={portfolioData.topSkills}
+            />
+          </AnimatedSection>
+        </Suspense>
+
+        <Suspense fallback={<SectionFallback />}>
+          <AnimatedSection delay={0.1}>
+            <ExperienceSection experience={portfolioData.experience} />
+          </AnimatedSection>
+        </Suspense>
+
+        <Suspense fallback={<SectionFallback />}>
+          <AnimatedSection delay={0.1}>
+            <EducationSection education={portfolioData.education} />
+          </AnimatedSection>
+        </Suspense>
+
+        <Suspense fallback={<SectionFallback />}>
+          <AnimatedSection delay={0.1}>
+            <CertificationsSection certifications={portfolioData.certifications} />
+          </AnimatedSection>
+        </Suspense>
+
+        <Suspense fallback={<SectionFallback />}>
+          <AnimatedSection delay={0.1}>
+            <ProjectsSection projects={portfolioData.projects} />
+          </AnimatedSection>
+        </Suspense>
+
+        <Suspense fallback={<SectionFallback />}>
+          <AnimatedSection delay={0.1}>
+            <ContactSection
+              email={portfolioData.email}
+              linkedin={portfolioData.linkedin}
+            />
+          </AnimatedSection>
+        </Suspense>
+      </main>
+
       <Footer />
-      
+
       <LinkedInButton url={portfolioData.linkedin} />
     </div>
   );
