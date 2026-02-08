@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Mail, Linkedin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,12 +13,24 @@ import { supabase } from "@/integrations/supabase/client";
  }
  
  const ContactSection = ({ email, linkedin }: ContactSectionProps) => {
-   const [formData, setFormData] = useState({
-     name: "",
-     email: "",
-     message: "",
-   });
-   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const badgeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://platform.linkedin.com/badges/js/profile.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
  
    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
      setFormData((prev) => ({
@@ -107,8 +119,28 @@ import { supabase } from "@/integrations/supabase/client";
                      <p className="text-foreground font-medium">Connect with me</p>
                    </div>
                  </a>
-               </div>
-             </div>
+                </div>
+
+                {/* LinkedIn Badge */}
+                <div ref={badgeRef} className="mt-6 flex justify-center">
+                  <div
+                    className="badge-base LI-profile-badge"
+                    data-locale="en_US"
+                    data-size="large"
+                    data-theme="light"
+                    data-type="HORIZONTAL"
+                    data-vanity="pratham-patel-283766347"
+                    data-version="v1"
+                  >
+                    <a
+                      className="badge-base__link LI-simple-link"
+                      href="https://in.linkedin.com/in/pratham-patel-283766347?trk=profile-badge"
+                    >
+                      Pratham Patel
+                    </a>
+                  </div>
+                </div>
+              </div>
  
              {/* Contact Form */}
              <div className="bg-gradient-card rounded-2xl p-6 md:p-8 card-shadow border border-border/50">
