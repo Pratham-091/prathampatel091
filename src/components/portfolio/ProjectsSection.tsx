@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FolderOpen, ExternalLink, Building2, Calendar } from "lucide-react";
 
 interface Project {
@@ -15,6 +16,12 @@ interface ProjectsSectionProps {
 }
 
 const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
+  const [expandedSkills, setExpandedSkills] = useState<Record<number, boolean>>({});
+
+  const toggleSkills = (index: number) => {
+    setExpandedSkills((prev) => ({ ...prev, [index]: !prev[index] }));
+  };
+
   return (
     <section id="projects" className="py-24 relative bg-secondary/20">
       <div className="container mx-auto px-6">
@@ -72,7 +79,7 @@ const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
                   
                   {/* Skills */}
                   <div className="flex flex-wrap gap-2">
-                    {project.skills.split(" · ").slice(0, 4).map((skill, idx) => (
+                    {project.skills.split(" · ").slice(0, expandedSkills[index] ? undefined : 4).map((skill, idx) => (
                       <span 
                         key={idx}
                         className="text-xs px-2 py-1 rounded-md bg-secondary text-secondary-foreground"
@@ -81,9 +88,12 @@ const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
                       </span>
                     ))}
                     {project.skills.split(" · ").length > 4 && (
-                      <span className="text-xs px-2 py-1 rounded-md bg-secondary text-muted-foreground">
-                        +{project.skills.split(" · ").length - 4} more
-                      </span>
+                      <button
+                        onClick={() => toggleSkills(index)}
+                        className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors cursor-pointer"
+                      >
+                        {expandedSkills[index] ? "Show less" : `+${project.skills.split(" · ").length - 4} more`}
+                      </button>
                     )}
                   </div>
                   
