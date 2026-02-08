@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -41,7 +39,7 @@
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 15% 97%) 100%);
     --gradient-glow: radial-gradient(ellipse at center, hsl(185 70% 50% / 0.1) 0%, transparent 70%);
     --gradient-accent: linear-gradient(135deg, hsl(185 70% 40%) 0%, hsl(200 80% 35%) 100%);
-    
+
     /* Shadows */
     --shadow-glow: 0 0 40px hsl(185 70% 50% / 0.1);
     --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.08);
@@ -84,7 +82,7 @@
     --gradient-card: linear-gradient(145deg, hsl(220 15% 10%) 0%, hsl(220 15% 6%) 100%);
     --gradient-glow: radial-gradient(ellipse at center, hsl(185 70% 50% / 0.15) 0%, transparent 70%);
     --gradient-accent: linear-gradient(135deg, hsl(185 70% 50%) 0%, hsl(200 80% 45%) 100%);
-    
+
     /* Shadows */
     --shadow-glow: 0 0 40px hsl(185 70% 50% / 0.15);
     --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.4);
@@ -103,7 +101,12 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Focus-visible styles for accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
   }
 }
 
@@ -134,7 +137,7 @@
   }
 
   .card-lift {
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .card-lift:hover {
@@ -142,9 +145,20 @@
     box-shadow: var(--shadow-lift);
   }
 
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .card-lift:hover {
+      transform: none;
+    }
+
+    .floating-button {
+      animation: none !important;
+    }
+  }
+
   .avatar-glow {
     box-shadow: 0 0 0 4px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.3);
-    transition: all 0.3s ease;
+    transition: box-shadow 0.3s ease;
   }
 
   .avatar-glow:hover {
