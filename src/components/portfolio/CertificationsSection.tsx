@@ -33,7 +33,7 @@ const CertificationsSection = ({ certifications }: CertificationsSectionProps) =
             {certifications.map((cert, index) => (
               <div 
                 key={index}
-                className="bg-gradient-card rounded-xl overflow-hidden card-shadow border border-border/50 card-lift cursor-pointer group"
+                className="glass-card overflow-hidden card-shadow card-lift cursor-pointer group rounded-[18px]"
                 onClick={() => setSelectedCert(cert)}
               >
                 {/* Thumbnail */}
@@ -81,7 +81,7 @@ const CertificationsSection = ({ certifications }: CertificationsSectionProps) =
       
       {/* Lightbox Dialog */}
       <Dialog open={!!selectedCert} onOpenChange={() => setSelectedCert(null)}>
-        <DialogContent className="max-w-4xl bg-card border-border">
+        <DialogContent className="max-w-4xl glass-card border-border">
           <DialogHeader>
             <DialogTitle className="text-xl font-semibold pr-8">
               {selectedCert?.title}

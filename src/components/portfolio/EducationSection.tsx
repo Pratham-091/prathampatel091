@@ -6,7 +6,7 @@ interface EducationSectionProps {
 
 const EducationSection = ({ education }: EducationSectionProps) => {
   return (
-    <section id="education" className="py-24 relative bg-secondary/20">
+    <section id="education" className="py-24 relative">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto space-y-12">
           {/* Section Title */}
@@ -22,7 +22,7 @@ const EducationSection = ({ education }: EducationSectionProps) => {
             {education.map((item, index) => (
               <div 
                 key={index}
-                className="bg-gradient-card rounded-xl p-6 card-shadow border border-border/50 card-lift flex gap-4"
+                className="glass-card rounded-[18px] p-6 card-shadow card-lift flex gap-4"
               >
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                   <GraduationCap className="w-6 h-6 text-primary" />

@@ -21,7 +21,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
   const hasMore = skillsList.length > 4;
 
   return (
-    <article className="bg-gradient-card rounded-2xl overflow-hidden card-shadow border border-border/50 card-lift group">
+    <article className="glass-card overflow-hidden card-shadow card-lift group rounded-[18px]">
       {/* Thumbnail */}
       <div className="aspect-video overflow-hidden relative">
         <img
@@ -98,7 +98,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
 const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
   return (
-    <section id="projects" className="py-24 relative bg-secondary/20" aria-label="Featured projects">
+    <section id="projects" className="py-24 relative" aria-label="Featured projects">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto space-y-12">
           {/* Section Title */}

@@ -53,7 +53,7 @@ const HeroSection = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+            className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-hero"
           >
             <span className="text-gradient glow-text">{name}</span>
           </motion.h1>
@@ -85,7 +85,7 @@ const HeroSection = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.65, ease: "easeOut" }}
           >
-            <Button asChild size="lg" className="gap-2 rounded-full px-8">
+            <Button asChild size="lg" className="gap-2 rounded-full px-8 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(255,109,41,0.5)] transition-all duration-300">
               <a href="/Pratham_Resume.pdf" download="Pratham_Patel_Resume.pdf">
                 <Download className="w-4 h-4" aria-hidden="true" />
                 Download Resume

@@ -21,7 +21,7 @@ const AboutSection = ({ about, skills }: AboutSectionProps) => {
           </div>
 
           {/* About Text */}
-          <div className="bg-gradient-card rounded-2xl p-8 card-shadow border border-border/50">
+          <div className="glass-card rounded-[18px] p-8 card-shadow">
             <p className="text-muted-foreground leading-relaxed text-lg">
               {about}
             </p>

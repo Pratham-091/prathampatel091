@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { Menu, X } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -31,14 +30,13 @@ const Navigation = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-lg border-b border-border/50 shadow-lg"
+          ? "glass-card rounded-none border-x-0 border-t-0"
           : "bg-transparent"
       }`}
       role="banner"
     >
       <nav className="container mx-auto px-6" aria-label="Main navigation">
         <div className="flex items-center justify-between h-16">
-          {/* Logo/Name */}
           <a href="#" className="text-lg font-semibold text-gradient" aria-label="Pratham Patel — Home">
             PP
           </a>
@@ -55,12 +53,10 @@ const Navigation = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" aria-hidden="true" />
               </a>
             ))}
-            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
             <button
               className="p-2 text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -75,8 +71,8 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div id="mobile-nav" className="md:hidden py-4 border-t border-border/50 bg-background/95 backdrop-blur-lg" role="menu">
-            <div className="flex flex-col gap-4">
+          <div id="mobile-nav" className="md:hidden py-4 border-t border-border/50 glass-card rounded-b-2xl" role="menu">
+            <div className="flex flex-col gap-4 px-2">
               {navLinks.map((link) => (
                 <a
                   key={link.href}

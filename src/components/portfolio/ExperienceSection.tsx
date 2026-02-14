@@ -25,7 +25,7 @@ const ExperienceSection = ({ experience }: ExperienceSectionProps) => {
           </div>
           
           {/* Experience Card */}
-          <div className="bg-gradient-card rounded-2xl p-8 card-shadow border border-border/50 card-lift">
+          <div className="glass-card rounded-[18px] p-8 card-shadow card-lift">
             <div className="flex flex-col md:flex-row md:items-center gap-6">
               {/* Icon */}
               <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 glow">
