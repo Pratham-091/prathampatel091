@@ -82,7 +82,7 @@ import { supabase } from "@/integrations/supabase/client";
                <div className="space-y-4">
                  <a
                    href={`mailto:${email}`}
-                   className="flex items-center gap-4 p-4 rounded-xl bg-gradient-card border border-border/50 card-shadow card-lift group"
+                  className="flex items-center gap-4 p-4 glass-card rounded-[18px] card-shadow card-lift group"
                  >
                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                      <Mail className="w-5 h-5 text-primary" />
@@ -97,7 +97,7 @@ import { supabase } from "@/integrations/supabase/client";
                    href={linkedin}
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center gap-4 p-4 rounded-xl bg-gradient-card border border-border/50 card-shadow card-lift group"
+                   className="flex items-center gap-4 p-4 glass-card rounded-[18px] card-shadow card-lift group"
                  >
                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                      <Linkedin className="w-5 h-5 text-primary" />
@@ -111,7 +111,7 @@ import { supabase } from "@/integrations/supabase/client";
               </div>
  
              {/* Contact Form */}
-             <div className="bg-gradient-card rounded-2xl p-6 md:p-8 card-shadow border border-border/50">
+             <div className="glass-card rounded-[18px] p-6 md:p-8 card-shadow">
                <form onSubmit={handleSubmit} className="space-y-5">
                  <div className="space-y-2">
                    <Label htmlFor="name" className="text-sm text-muted-foreground">
@@ -160,11 +160,11 @@ import { supabase } from "@/integrations/supabase/client";
                    />
                  </div>
  
-                 <Button
-                   type="submit"
-                   disabled={isSubmitting}
-                   className="w-full gap-2"
-                 >
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full gap-2 rounded-full hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(255,109,41,0.5)] transition-all duration-300"
+                  >
                    {isSubmitting ? (
                      "Sending..."
                    ) : (

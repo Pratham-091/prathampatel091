@@ -16,6 +16,9 @@ export default {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
+      letterSpacing: {
+        'hero': '-0.02em',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
